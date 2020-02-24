@@ -1,0 +1,60 @@
+/*
+	default.css
+	Copyright (C) 1998, 1999 Masahiro SATO
+	$Id: default.css,v 1.8 2000-01-29 18:37:52+09 msato Exp $
+	Time-stamp: <05/06/18 11:42:28 msato>
+*/
+
+body {
+/*
+	line-height:	120%;
+*/
+	margin-right:	2%;
+	margin-left:	2%;
+	margin-top:	1em;
+	margin-bottom:	1em;
+	background-color:	rgb(205,197,191);
+}
+
+address {
+	text-align:	right;
+
+}
+
+.copyright {
+	text-align:	center;
+}
+
+.lastmod {
+	margin-top:	-1.8em
+}
+
+.lang {
+	text-align:	right;
+}
+
+p.subtitle {
+	width:		80%;
+	font-size:	smaller;
+}
+
+h1 {
+	text-align:	center;
+	border-style:	outset;
+	border-width:	thin;
+}
+
+img.banner {
+/*
+        width:		88px;
+        height:		31px;
+*/
+	border:		0;
+}
+
+/*
+img.smallusagi {
+	width:		39px;
+	height:		68px;
+}
+*/
