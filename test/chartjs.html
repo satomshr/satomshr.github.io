@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Test of Chart.js</title>
+  <link title="default" href="../css/default.css" type="text/css" rel="stylesheet">
+  <link href="mailto:sato.mshr@gmail.com" rev="MADE">
+</head>
+
+<body>
+<h1>Test of Chart.js</h1>
+
+<canvas id="myChart"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+//  var ctx = document.getElementById("myChart").getContext("2d");
+//  var chart = new Chart(ctx, {
+//    type: "bar",
+//    data:{
+//      labels: [Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+//      datasets:[{
+//        data:[3273, 5417, 8709, 7405, 15393, 4747, 9853]
+//      }]
+//    },
+//    options:{}
+//  });
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // 作成したいチャートタイプ
+    type: 'line',
+
+    // データセットの情報
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [{
+            label: "My First dataset",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+        }]
+    },
+
+    // 設定オプションはここに
+    options: {}
+
+</script>
+
+  <address>
+    <a href="mailto:sato.mshr@gmail.com">sato.mshr@gmail.com</a>
+  </address>
+
+</body>
+</html>
