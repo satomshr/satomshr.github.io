@@ -11,6 +11,8 @@
 <body>
 <h1>Kaggle の Titanic のチュートリアルをトライ</h1>
 
+<h2>検討結果</h2>
+
 <p><a href="https://www.kaggle.com/c/titanic">Kaggle の Titanic</a> に
   取り組み始めました. まずはチュートリアル通りにコードを書きました. 結果は以下の通り.
 </p>
@@ -20,7 +22,34 @@
   <li>my_submission.csv (random forest) ; 0.77511</li>
 </ul>
 
-  
+<p>チュートリアルで考慮しているのは Pclass (チケットクラス), Sex (性別), SibSp (同乗している兄弟, 配偶者の数),
+  Parch (同乗している親, 子供の数) の 4 つだった.
+  そこで Age (年齢) を加えれば精度が上がるかな? と思ってコードを修正した. ただし, Age には
+  N/A が含まれているので, <a href="https://www.codexa.net/kaggle-titanic-beginner/">codexa の解説</a> を
+  参考にして, Age の N/A を median (中央値) で埋めた. 結果は…</p>
+
+<ul>
+  <li>Pclass, Sex, SibSp, Parch + Age (random forest) ; 0.77272</li>
+</ul>
+
+<p>Before が 0.77511, After が 0.77272 で, その差は 0.003 だが下がっている. 世の中,
+  そう簡単にはうまくいかないのだ :-p</p>
+
+<p>次は, アルゴリズムを変えることを検討してみたい</p>
+
+<h2>参考</h2>
+<ul>
+  <li><a href="https://www.kaggle.com/c/titanic">Titanic: Machine Learning from Disaster</a></li>
+  <li><a href="https://www.codexa.net/kaggle-titanic-beginner/">【Kaggle初心者入門編】タイタニック号で生き残るのは誰？</a></li>
+</ul>
+
+<hr>
+
+<ul>
+  <li><a href="../../">Back to Top Page</a></li>
+</ul>
+
+
 <address>
   <a href="mailto:sato.mshr@gmail.com">sato.mshr@gmail.com</a>
 </address>
