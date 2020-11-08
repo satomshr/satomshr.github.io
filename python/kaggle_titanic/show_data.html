@@ -51,11 +51,93 @@
 
 <p>明らかに, 生存率に男女差がある. ここから, 例えば男女でモデルを変えることなどが考えられる.</p>
 
+<h2>年齢</h2>
+<p>男女別の年齢分布を調べる.</p>
+
+<blockquote cite="https://github.com/satomshr/kaggle_titanic/blob/main/show_data.py">
+<pre>
+  # Age
+  male0 = train_data_male[train_data_male["Survived"]==0]
+  male1 = train_data_male[train_data_male["Survived"]==1]
+  female0 = train_data_female[train_data_female["Survived"]==0]
+  female1 = train_data_female[train_data_female["Survived"]==1]
+
+  figure, (Left, Right) = plt.subplots(ncols=2, figsize=(10, 5))
+
+  Left.hist([male1['Age'].dropna(), male0['Age'].dropna()], label=['Survived', 'Not survived'],
+      stacked=True)
+  Left.legend()
+  Left.set_xlim(0, 100)
+  Left.set_ylim(0, 120)
+  Left.grid(True)
+  Left.set_title("Male")
+  Left.set_xlabel("Age")
+
+  Right.hist([female1['Age'].dropna(), female0['Age'].dropna()], label=['Survived', 'Not survived'],
+      stacked=True)
+  Right.legend()
+  Right.set_xlim(0, 100)
+  Right.set_ylim(0, 120)
+  Right.grid(True)
+  Right.set_title("Female")
+  Right.set_xlabel("Age")
+
+  figure.savefig("age.svg")
+</pre>
+</blockquote>
+
+<p><img src="https://raw.githubusercontent.com/satomshr/kaggle_titanic/main/age.svg"></p>
+
+<p>男性より女性のほうが, 年齢の分布が若いほうに少しシフトしている. 10 歳以下の人数が比較的多いのは,
+  子供の小さい夫婦が新天地を目指して Titanic に乗船したということか?</p>
+
+<pre>
+In [3]: train_data_male['Age'].dropna().describe()
+Out[3]:
+count    453.000000
+mean      30.726645
+std       14.678201
+min        0.420000
+25%       21.000000
+50%       29.000000
+75%       39.000000
+max       80.000000
+Name: Age, dtype: float64
+
+In [4]: train_data_male['Age'].dropna().median()
+Out[4]: 29.0
+
+In [5]: train_data_female['Age'].dropna().describe()
+Out[5]:
+count    261.000000
+mean      27.915709
+std       14.110146
+min        0.750000
+25%       18.000000
+50%       27.000000
+75%       37.000000
+max       63.000000
+Name: Age, dtype: float64
+
+In [6]: train_data_female['Age'].dropna().median()
+Out[6]: 27.0
+</pre>
+
+<p>男性の年齢は, 平均が 30.7 歳, 中央が 29.0 歳. 女性の年齢は, 平均が 27.9 歳, 中央が 27 歳.
+  2 歳程度, 女性のほうが若い. 前回は年齢の N/A は全体の中央値で埋めたが, 男女で区別して考えるか
+  どうかは, 思案のしどころ (2 歳くらいなら気にしなくていいように思う).</p>
+
+<p>中央値を求めるのに <code>median()</code> を使ったが, <code>describe()</code> の <code>50%</code> を
+  見ればよかったのか…</p>
 
 <h2>参考</h2>
 <ul>
   <li><a href="https://www.kaggle.com/c/titanic">Titanic: Machine Learning from Disaster</a></li>
   <li><a href="https://qiita.com/ynakayama/items/9979258ac68cb669757a">matplotlib (+ pandas) によるデータ可視化の方法 (3)</a>
+  <li><a href="https://pythondatascience.plavox.info/matplotlib/%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0">matplotlib でヒストグラムを描く</a>
+  <li><a href="https://qiita.com/supersaiakujin/items/543053ca4610437112df">[Python]Matplotlibで複数のグラフを描画する方法</a>
+
+
 </ul>
 
 <hr>
