@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+
+<head>
+  <title>Show data (Kaggle / Titanic)</title>
+  <link title="default" href="../../css/default.css" type="text/css" rel="stylesheet">
+  <link href="mailto:sato.mshr@gmail.com" rev="MADE">
+</head>
+
+<body>
+<h1>データを見る (Kaggle / Titanic)</h1>
+
+<h2>はじめに</h2>
+<p>「チュートリアル以上のスコアを出すために, アルゴリズムを見直そう」と思ったけど,
+  その前にデータをもっとよく見たほうが良いのではないか? と思って, データを見ていく
+  ことにした. </p>
+
+<h2>性別</h2>
+<p>チュートリアルでは, 単純に「女性は全員生き残った, 男性は全員生き残れなかった」とした
+  だけで 0.7 以上のスコアが出ていた. つまり, 男性と女性では生き残る確率が違うということだ.
+  これを可視化してみた.</p>
+
+<blockquote cite="https://github.com/satomshr/kaggle_titanic/blob/main/show_data.py">
+<pre>
+  import pandas as pd
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+  train_data = pd.read_csv("train.csv")
+  test_data = pd.read_csv("test.csv")
+
+  # Sex
+  train_data_male = train_data[train_data["Sex"] == "male"]
+  train_data_female = train_data[train_data["Sex"] == "female"]
+  male_female_survived = pd.DataFrame(np.zeros((2, 2)),
+      columns=['Survived', 'Not survived'],
+      index=['Male', 'Female'])
+  male_female_survived.loc['Male', 'Survived'] = len(train_data_male[train_data_male["Survived"]==1])
+  male_female_survived.loc['Male', 'Not survived'] = len(train_data_male[train_data_male["Survived"]==0])
+  male_female_survived.loc['Female', 'Survived'] = len(train_data_female[train_data_female["Survived"]==1])
+  male_female_survived.loc['Female', 'Not survived'] = len(train_data_female[train_data_female["Survived"]==0])
+
+  male_female_survived.plot(kind='bar', stacked=True)
+  plt.grid()
+  plt.savefig("sex.svg")
+</pre>
+</blockquote>
+
+<p><img src="https://raw.githubusercontent.com/satomshr/kaggle_titanic/main/sex.svg"></p>
+
+<p>明らかに, 生存率に男女差がある. ここから, 例えば男女でモデルを変えることなどが考えられる.</p>
+
+
+<h2>参考</h2>
+<ul>
+  <li><a href="https://www.kaggle.com/c/titanic">Titanic: Machine Learning from Disaster</a></li>
+  <li><a href="https://qiita.com/ynakayama/items/9979258ac68cb669757a">matplotlib (+ pandas) によるデータ可視化の方法 (3)</a>
+</ul>
+
+<hr>
+
+<ul>
+  <li><a href="../../">Back to Top Page</a></li>
+</ul>
+
+
+<address>
+  <a href="mailto:sato.mshr@gmail.com">sato.mshr@gmail.com</a>
+</address>
+
+</body>
+</html>
